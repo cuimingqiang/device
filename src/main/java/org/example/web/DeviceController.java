@@ -2,6 +2,7 @@ package org.example.web;
 
 import org.example.base.BaseResult;
 import org.example.model.DeviceNewParam;
+import org.example.param.DeleteDeviceParam;
 import org.example.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,13 @@ public class DeviceController {
     public Object getDevice(Map<String, Object> filter) {
         DeviceNewParam device = deviceService.getDevice(filter);
         return BaseResult.succees(device);
+    }
+
+    @PostMapping("/delete")
+    public Object delete(@RequestBody DeleteDeviceParam param) {
+        if (param == null || !"1314926".equals(param.token)) return BaseResult.error(400, "未授权");
+        deviceService.deleteDevice(param.deviceId);
+        return BaseResult.succees(null);
     }
 
     @GetMapping("/allDevice")

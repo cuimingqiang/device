@@ -12,4 +12,6 @@ public interface DeviceService {
     DeviceNewParam getDevice(Map<String, Object> deviceInfo);
 
     List<DeviceNewParam> getAllDevice();
+
+    void deleteDevice(long deviceId);
 }

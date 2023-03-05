@@ -51,4 +51,9 @@ public class DeviceServiceImp implements DeviceService {
     public List<DeviceNewParam> getAllDevice() {
         return deviceRepository.findAll();
     }
+
+    @Override
+    public void deleteDevice(long deviceId) {
+        deviceRepository.deleteById(deviceId);
+    }
 }
