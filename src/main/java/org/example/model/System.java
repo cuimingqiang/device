@@ -34,13 +34,13 @@ public class System {
     private Mcmt mcmt;
 
     private boolean efig;
-
+    @Column(length = Integer.MAX_VALUE)
     private List<String> processlist;
 
     private String systemUa;
 
     private String appname;
-
+    @Column(length = Integer.MAX_VALUE)
     private List<String> runningServices;
 
     private boolean backCamera;
@@ -62,7 +62,7 @@ public class System {
     private String lastupdatetime;
 
     private boolean af;
-
+    @Column(length = Integer.MAX_VALUE)
     private List<String> ipAddress;
 
     private String packagename;

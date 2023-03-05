@@ -20,7 +20,7 @@ public class Cpu
     private String cpuMin;
 
     private String physicalcpu;
-
+    @Column(length = Integer.MAX_VALUE)
     private List<String> scalingCur;
 
     private String cpuMax;

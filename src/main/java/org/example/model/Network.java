@@ -19,7 +19,7 @@ public class Network {
     public String mnc;
 
     public String mobileCountryCode;
-
+    @Column(length = Integer.MAX_VALUE)
     public List<String> wifissidlist;
 
     public String bssid;
@@ -28,10 +28,11 @@ public class Network {
 
     public String macId;
 
+    @Column(length = Integer.MAX_VALUE)
     public List<String> wifiList;
 
     public String proxyInfo;
-
+    @Column(length = Integer.MAX_VALUE)
     public List<String> dns;
 
     public int wifirssi;
