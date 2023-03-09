@@ -4,13 +4,13 @@ package org.example.exception;
  * 小滴课堂
  * 自定义异常类
  */
-public class ServiceException extends RuntimeException{
+public class HttpException extends RuntimeException{
 
     private Integer code;
 
     private String msg;
 
-    public ServiceException(Integer code, String msg){
+    public HttpException(Integer code, String msg){
         this.code = code;
         this.msg = msg;
     }

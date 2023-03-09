@@ -20,8 +20,8 @@ public class CustomExceptionHandler {
     @ResponseBody
     public BaseResult handle(Exception e) {
         logger.error("[ 系统异常 ]{}", e.getMessage());
-        if (e instanceof ServiceException) {
-            ServiceException xdException = (ServiceException) e;
+        if (e instanceof HttpException) {
+            HttpException xdException = (HttpException) e;
             return BaseResult.error(xdException.getCode(), xdException.getMsg());
 
         } else {

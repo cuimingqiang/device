@@ -11,18 +11,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
-@RequestMapping("/user")
+@RequestMapping("/api/v1//user")
 @RestController
 public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public Object login(@RequestBody Map<String,String> data){
-        User user = userService.login(data);
-        if (user == null)return BaseResult.error(401,"登录失败");
-        return BaseResult.success(user);
+        String token = userService.login(data);
+        if (token == null)return BaseResult.error(400,"用户不存在");
+        return BaseResult.success(token);
     }
 
 
+    @PostMapping("/register")
+    public Object register(@RequestBody Map<String,String> user){
+        Object result = userService.register(user);
+        return BaseResult.success(result);
+    }
 }

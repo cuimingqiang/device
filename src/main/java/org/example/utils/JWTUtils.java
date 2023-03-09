@@ -27,13 +27,13 @@ public class JWTUtils {
     /**
      * 加密秘钥
      */
-    private  static final String SECRET = "device.jd";
+    private  static final String SECRET = "jd.jd";
 
 
     /**
      * 令牌前缀
      */
-    private  static final String TOKEN_PREFIX = "device";
+    private  static final String TOKEN_PREFIX = "jd";
 
 
     /**
