@@ -9,7 +9,7 @@ public interface DeviceService {
 
     void uploadDevice(Map<String, Object> deviceInfo);
 
-    DeviceNewParam getDevice(Map<String, Object> deviceInfo);
+    DeviceNewParam getDevice(Map<String, Object> deviceInfo, String account, String deviceFingerprint);
 
     List<DeviceNewParam> getAllDevice();
 

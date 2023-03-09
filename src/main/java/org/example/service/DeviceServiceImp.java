@@ -1,19 +1,26 @@
 package org.example.service;
 
 import com.google.gson.Gson;
+import org.example.exception.HttpException;
 import org.example.model.device.DeviceNewParam;
+import org.example.model.record.DeviceUseRecord;
+import org.example.repository.DeviceRecordRepository;
 import org.example.repository.DeviceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
 public class DeviceServiceImp implements DeviceService {
     @Autowired
     DeviceRepository deviceRepository;
+
+    @Autowired
+    DeviceRecordRepository recordRepository;
 
     @Override
     public void uploadDevice(Map<String, Object> deviceInfo) {
@@ -25,7 +32,7 @@ public class DeviceServiceImp implements DeviceService {
     }
 
     @Override
-    public DeviceNewParam getDevice(Map<String, Object> deviceInfo) {
+    public DeviceNewParam getDevice(Map<String, Object> deviceInfo, String account, String deviceFingerprint) {
         String country = null;
         try {
             country = deviceInfo.get("country").toString();//国家
@@ -44,7 +51,22 @@ public class DeviceServiceImp implements DeviceService {
         }
         if (byHql == null || byHql.isEmpty()) return null;
         int i = new Random().nextInt(byHql.size());
-        return deviceRepository.findById(byHql.get(i)).get();
+        Optional<DeviceNewParam> device = deviceRepository.findById(byHql.get(i));
+        if (device.isPresent()) {
+            DeviceNewParam param = device.get();
+            DeviceUseRecord record = new DeviceUseRecord(
+                    param.id,
+                    param.build.model,
+                    param.build.osVersion,
+                    param.system.getCountry(),
+                    account, deviceFingerprint
+
+            );
+            //插入一条下发记录
+            recordRepository.save(record);
+            return param;
+        }
+        throw new HttpException(500, "机型随机识别");
     }
 
     @Override

@@ -6,7 +6,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.example.base.BaseResult;
-import org.example.exception.CustomExceptionHandler;
 import org.example.utils.JWTUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.PrintWriter;
 
-public class LoginInterceptor implements HandlerInterceptor {
-    private final static Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
+public class DeviceLoginInterceptor implements HandlerInterceptor {
+    private final static Logger logger = LoggerFactory.getLogger(DeviceLoginInterceptor.class);
 
     /**
      * 进入到controller之前的方法
@@ -43,8 +42,10 @@ public class LoginInterceptor implements HandlerInterceptor {
                 }
                 Integer id = (Integer) claims.get("id");
                 String name = (String) claims.get("account");
+                String deviceFingerprint = (String) claims.get("deviceFingerprint");
                 request.setAttribute("user_id", id);
                 request.setAttribute("account", name);
+                request.setAttribute("deviceFingerprint", deviceFingerprint);
                 return true;
             }
 
