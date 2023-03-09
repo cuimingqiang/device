@@ -29,14 +29,12 @@ public class DeviceController {
 
     @PostMapping("/delete")
     public Object delete(@RequestBody DeleteDeviceParam param) {
-        if (param == null || !"1314926".equals(param.token)) return BaseResult.error(400, "未授权");
         deviceService.deleteDevice(param.deviceId);
-        return BaseResult.success(null);
+        return BaseResult.success("删除成功");
     }
 
-    @GetMapping("/allDevice")
-    public Object getAllDevice(String token) {
-        if (!"1314926".equals(token)) return BaseResult.error(400, "未授权");
+    @GetMapping("/all")
+    public Object getAllDevice() {
         return BaseResult.success(deviceService.getAllDevice());
     }
 }
