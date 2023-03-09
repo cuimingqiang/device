@@ -1,4 +1,4 @@
-package org.example.service;
+package org.example.service.imp;
 
 import com.google.gson.Gson;
 import org.example.exception.HttpException;
@@ -6,6 +6,7 @@ import org.example.model.device.DeviceNewParam;
 import org.example.model.record.DeviceUseRecord;
 import org.example.repository.DeviceRecordRepository;
 import org.example.repository.DeviceRepository;
+import org.example.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

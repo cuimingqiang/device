@@ -1,8 +1,9 @@
-package org.example.service;
+package org.example.service.imp;
 
 import org.example.exception.HttpException;
 import org.example.model.user.User;
 import org.example.repository.UserRepository;
+import org.example.service.UserService;
 import org.example.utils.JWTUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +35,7 @@ public class UserServiceImp implements UserService {
                 throw new HttpException(403, "账号设备已绑定，请先解绑");
             }
             logger.info("-------------");
-            return JWTUtils.geneJsonWebToken(user);
+            return JWTUtils.geneUserToken(user);
         }
         throw new HttpException(400, "用户不存在");
     }

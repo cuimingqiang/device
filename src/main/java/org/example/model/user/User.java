@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+import java.util.Date;
+
 @Entity
 public class User {
     private static final long serialVersionUID = 1L;
@@ -16,7 +18,12 @@ public class User {
 
     public String password;
 
+    public String group;
+
     public String deviceFingerprint;
+
+    public Date createData;
+    public Date expiryDate;
 
     public User() {
     }

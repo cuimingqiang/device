@@ -1,5 +1,6 @@
 package org.example.config;
 
+import org.example.interceptor.CorsInterceptor;
 import org.example.interceptor.DeviceLoginInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -18,6 +19,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new CorsInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(new DeviceLoginInterceptor()).addPathPatterns("/api/v1/device/**",
                         "/api/v1/user/**")
                 //不拦截哪些路径   斜杠一定要加

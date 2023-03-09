@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.example.model.user.User;
+import org.example.model.user.UserManager;
 
 import java.util.Date;
 
@@ -47,7 +48,7 @@ public class JWTUtils {
      * @param user
      * @return
      */
-    public static String geneJsonWebToken(User user){
+    public static String geneUserToken(User user){
 
         String token = Jwts.builder().setSubject(SUBJECT)
                 .claim("account",user.account)
@@ -59,6 +60,19 @@ public class JWTUtils {
 
         token = TOKEN_PREFIX + token;
 
+
+        return token;
+    }
+    public static String geneUserManagerToken(UserManager user){
+
+        String token = Jwts.builder().setSubject(SUBJECT)
+                .claim("account",user.account)
+                .claim("id",user.id)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRE))
+                .signWith(SignatureAlgorithm.HS256,SECRET).compact();
+
+        token = TOKEN_PREFIX + token;
 
         return token;
     }
