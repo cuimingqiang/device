@@ -20,12 +20,16 @@ public class BaseResult {
         this.data = data;
     }
 
-    public static BaseResult succees(Object data) {
+    public static BaseResult success(Object data) {
         return new BaseResult(data);
     }
 
     public static BaseResult error(int code, String message) {
         return new BaseResult(message, code);
+    }
+
+    public static BaseResult error(String message) {
+        return new BaseResult(message, -1);
     }
 
     public String getMessage() {

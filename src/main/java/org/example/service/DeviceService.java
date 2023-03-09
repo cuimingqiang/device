@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.model.DeviceNewParam;
+import org.example.model.device.DeviceNewParam;
 
 import java.util.List;
 import java.util.Map;

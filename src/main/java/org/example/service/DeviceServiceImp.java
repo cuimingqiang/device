@@ -1,7 +1,7 @@
 package org.example.service;
 
 import com.google.gson.Gson;
-import org.example.model.DeviceNewParam;
+import org.example.model.device.DeviceNewParam;
 import org.example.repository.DeviceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

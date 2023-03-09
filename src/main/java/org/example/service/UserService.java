@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.user.User;
+import org.example.model.user.User;
 
 import java.util.Map;
 
