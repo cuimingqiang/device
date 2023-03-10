@@ -18,7 +18,7 @@ public class User {
 
     public String password;
 
-    public String group;
+    public String owner;
 
     public String deviceFingerprint;
 

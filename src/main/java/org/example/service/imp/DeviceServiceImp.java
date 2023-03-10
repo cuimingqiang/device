@@ -1,12 +1,15 @@
 package org.example.service.imp;
 
 import com.google.gson.Gson;
+import org.example.exception.CustomExceptionHandler;
 import org.example.exception.HttpException;
 import org.example.model.device.DeviceNewParam;
 import org.example.model.record.DeviceUseRecord;
 import org.example.repository.DeviceRecordRepository;
 import org.example.repository.DeviceRepository;
 import org.example.service.DeviceService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,7 @@ import java.util.Random;
 
 @Service
 public class DeviceServiceImp implements DeviceService {
+    private final static Logger logger = LoggerFactory.getLogger(DeviceServiceImp.class);
     @Autowired
     DeviceRepository deviceRepository;
 
@@ -37,15 +41,17 @@ public class DeviceServiceImp implements DeviceService {
         String country = null;
         try {
             country = deviceInfo.get("country").toString();//国家
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            logger.error("[getDevice os country]{}",e.getMessage());
         }
 
-        Integer osVersion = null;//系统版本
+        String osVersion = null;//系统版本
         try {
-            osVersion = Integer.parseInt(deviceInfo.get("osVersion").toString());
-        } catch (Exception ignored) {
+            osVersion = deviceInfo.get("osVersion").toString();
+        } catch (Exception e) {
+            logger.error("[getDevice os version]{}",e.getMessage());
         }
-        List<Long> byHql = deviceRepository.getDeviceIdByHql(country, osVersion);
+        List<Long> byHql = deviceRepository.getDeviceByOsVersion(osVersion);
         System.out.println("--查询到符合条件的--" + byHql);
         if (byHql == null || byHql.isEmpty()) {
             byHql = deviceRepository.getAllDeviceId();
@@ -72,6 +78,7 @@ public class DeviceServiceImp implements DeviceService {
 
     @Override
     public List<DeviceNewParam> getAllDevice() {
+
         return deviceRepository.findAll();
     }
 

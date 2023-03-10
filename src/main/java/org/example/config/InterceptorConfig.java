@@ -23,7 +23,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(new DeviceLoginInterceptor()).addPathPatterns("/api/v1/device/**",
                         "/api/v1/user/**")
                 //不拦截哪些路径   斜杠一定要加
-                .excludePathPatterns("/api/v1/device/upload");
+                .excludePathPatterns("/api/v1/device/upload","/api/v1/device/random");
         WebMvcConfigurer.super.addInterceptors(registry);
     }
 }
