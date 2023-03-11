@@ -84,18 +84,12 @@ public class JWTUtils {
      * @return
      */
     public static Claims checkJWT(String token){
-
         try{
-
-            final  Claims claims = Jwts.parser().setSigningKey(SECRET)
+            return Jwts.parser().setSigningKey(SECRET)
                     .parseClaimsJws(token.replace(TOKEN_PREFIX,"")).getBody();
-
-            return claims;
-
         }catch (Exception e){
             return null;
         }
-
     }
 
 

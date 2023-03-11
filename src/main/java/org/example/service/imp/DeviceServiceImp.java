@@ -110,6 +110,7 @@ public class DeviceServiceImp implements DeviceService {
         if (!StringUtils.hasLength(param.deviceAccount)) throw new HttpException(400, "账号不能为空");
         if (!StringUtils.hasLength(param.cardNo)) throw new HttpException(400, "卡密不能味空");
         if (!StringUtils.hasLength(param.cardPassword)) throw new HttpException(400, "校验码不能为空");
+
         Card card = chargeService.getCard(param.cardNo, param.cardPassword);
         if (card == null) throw new HttpException(401, "卡密不存在或校验码不正确");
         Date expireDate = new Date();
@@ -143,6 +144,7 @@ public class DeviceServiceImp implements DeviceService {
         if (!StringUtils.hasLength(param.devicePassword)) throw new HttpException(400, "密码不能为空");
         if (!StringUtils.hasLength(param.cardNo)) throw new HttpException(400, "卡密不能味空");
         if (!StringUtils.hasLength(param.cardPassword)) throw new HttpException(400, "校验码不能为空");
+        logger.info("[register]{}",param);
         Card card = chargeService.getCard(param.cardNo, param.cardPassword);
         if (card == null) throw new HttpException(401, "卡密不存在或校验码不正确");
         Date expireDate = new Date();

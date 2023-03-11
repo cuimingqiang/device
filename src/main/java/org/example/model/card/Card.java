@@ -27,4 +27,18 @@ public class Card {
     public int isUsed;
     //绑定的设备
     public Long userId;
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "id=" + id +
+                ", cardNo='" + cardNo + '\'' +
+                ", cardPassword='" + cardPassword + '\'' +
+                ", createDate=" + createDate +
+                ", validity=" + validity +
+                ", type=" + type +
+                ", isUsed=" + isUsed +
+                ", userId=" + userId +
+                '}';
+    }
 }
