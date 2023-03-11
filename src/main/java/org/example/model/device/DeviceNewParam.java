@@ -26,6 +26,10 @@ public class DeviceNewParam {
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "screen")
     public Screen screen;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "screen1")
+    public Screen screen1;
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "battery")
     public Battery battery;
