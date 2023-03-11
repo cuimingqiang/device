@@ -16,14 +16,17 @@ public class ChargeServiceImp implements ChargeService {
     Random randObj = new Random();
     @Autowired
     ChargeRepository chargeRepository;
+
     @Override
     public List<Card> generate(int type, int number, int validate) {
         int length = number;
-        if (length< 1)length =1;
+        if (length < 1) length = 1;
         List<Card> list = new ArrayList<>(length);
-        for (int i=0;i<length;i++){
+        for (int i = 0; i < length; i++) {
             Card card = new Card();
-            card.cardNo = UUID.randomUUID().toString().replace("-","");
+            card.cardNo = UUID.randomUUID().toString().replace("-", "")
+                    .substring(0, 10)
+                    .toUpperCase();
             card.cardPassword = Integer.toString(100000 + randObj.nextInt(900000));
             card.createDate = new Date();
             card.type = type;
@@ -38,7 +41,7 @@ public class ChargeServiceImp implements ChargeService {
     public List<Card> getAll(Map<String, Object> param) {
         int type = (int) param.get("type");
         int active = (int) param.get("active");
-        logger.info("[charge get all]{}|{}",type,active);
+        logger.info("[charge get all]{}|{}", type, active);
         return chargeRepository.getCardByTypeAndIsUsed(type, active);
     }
 }
