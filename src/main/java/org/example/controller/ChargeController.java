@@ -3,6 +3,9 @@ package org.example.controller;
 import org.example.base.BaseResult;
 import org.example.model.card.Card;
 import org.example.model.request.ChargeParam;
+import org.example.model.request.DeviceRegisterParam;
+import org.example.model.request.DeviceRenewParam;
+import org.example.model.request.DeviceUnbindParam;
 import org.example.service.ChargeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,4 +32,6 @@ public class ChargeController {
         List<Card> list = chargeService.getAll(param);
         return BaseResult.success(list);
     }
+
 }
+

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Date;
 import java.util.Map;
 
 @Service
@@ -31,29 +32,38 @@ public class UserServiceImp implements UserService {
         User user = userRepository.findUserByAccountAndPassword(account, password);
         logger.error("[ 用户登录 ]{}", user);
         if (user != null) {
-            if (StringUtils.hasText(user.deviceFingerprint) && !user.deviceFingerprint.equals(deviceFingerprint)) {
+            if (!StringUtils.hasText(user.deviceFingerprint)) {
+                user.deviceFingerprint = deviceFingerprint;
+                userRepository.save(user);
+            } else if (!user.deviceFingerprint.equals(deviceFingerprint)) {
                 throw new HttpException(403, "账号设备已绑定，请先解绑");
             }
-            logger.info("-------------");
+            if (user.expiryDate == null || user.expiryDate.before(new Date())) {
+                throw new HttpException(404, "账号已过期");
+            }
             return JWTUtils.geneUserToken(user);
         }
         throw new HttpException(400, "用户不存在");
     }
 
     @Override
-    public String register(Map<String, String> user) {
-        String account = user.get("account");
-        String password = user.get("password");
-        if (StringUtils.hasLength(account) && StringUtils.hasLength(password)) {
-            try {
-                userRepository.saveAndFlush(new User(account, password));
-                return "创建成功";
-            } catch (Exception e) {
-                logger.error("[ 注册用户 ]{}", e.getMessage());
-                throw new HttpException(402, "账号已存在");
-            }
+    public User register(String account, String password, Date expireDate) {
+        User user = new User(account, password, new Date(), expireDate);
+        return userRepository.saveAndFlush(user);
+    }
 
-        }
-        throw new HttpException(401, "账号密码不正确");
+    @Override
+    public User findUser(String account) {
+        return userRepository.findUserByAccount(account);
+    }
+
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
+    public void unbind(String deviceAccount, String devicePassword) {
+        userRepository.unbind(deviceAccount, devicePassword);
     }
 }

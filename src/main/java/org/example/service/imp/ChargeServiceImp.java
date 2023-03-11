@@ -44,4 +44,15 @@ public class ChargeServiceImp implements ChargeService {
         logger.info("[charge get all]{}|{}", type, active);
         return chargeRepository.getCardByTypeAndIsUsed(type, active);
     }
+
+    @Override
+    public Card getCard(String cardNO, String verify) {
+
+        return chargeRepository.findCard(cardNO,verify);
+    }
+
+    @Override
+    public void active(Card card) {
+        chargeRepository.save(card);
+    }
 }

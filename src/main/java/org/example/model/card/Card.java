@@ -1,5 +1,6 @@
 package org.example.model.card;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -13,16 +14,17 @@ public class Card {
     @GeneratedValue
     public Long id;
 
+    @Column(unique = true)
     public String cardNo;
     public String cardPassword;
 
     public Date createDate;
     //有效期
     public int validity;
-    //类型，年卡，月卡，周卡，日卡
+    //类型，0年卡，1月卡，2周卡，3日卡
     public int type;
     //是否已使用
     public int isUsed;
     //绑定的设备
-    public String deviceId;
+    public Long userId;
 }

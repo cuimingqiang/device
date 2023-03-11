@@ -1,5 +1,7 @@
 package org.example.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.example.base.BaseResult;
 import org.example.model.device.DeviceNewParam;
 import org.example.model.request.DeleteDeviceParam;
@@ -25,4 +27,14 @@ public class DeviceManagerController {
     public Object getAllDevice() {
         return BaseResult.success(deviceService.getAllDevice());
     }
+
+    @GetMapping("/device")
+    public Object getDevice(@RequestParam("id") long id) {
+        DeviceNewParam device = deviceService.getDevice(id);
+        if (device == null) return null;
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(device);
+        return BaseResult.success(json);
+    }
+
 }

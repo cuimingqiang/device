@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 @Table(name = "device_view")
 public class DeviceView {
     @Id
-    private long id;
+    public Long id;
     public String manufacture;
     public String model;
     public String osVersion;

@@ -24,10 +24,4 @@ public class UserController {
         return BaseResult.success(token);
     }
 
-
-    @PostMapping("/register")
-    public Object register(@RequestBody Map<String,String> user){
-        Object result = userService.register(user);
-        return BaseResult.success(result);
-    }
 }

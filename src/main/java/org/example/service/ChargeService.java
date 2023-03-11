@@ -11,4 +11,8 @@ public interface ChargeService {
 
 
     List<Card> getAll(Map<String, Object> param);
+
+    Card getCard(String cardNO,String verify);
+
+    void active(Card card);
 }

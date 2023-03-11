@@ -21,4 +21,6 @@ public interface DeviceRepository extends JpaRepository<DeviceNewParam,Long> {
 
     @Query("SELECT id FROM DeviceNewParam")
     List<Long> getAllDeviceId();
+
+
 }

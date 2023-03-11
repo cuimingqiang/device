@@ -33,6 +33,13 @@ public class User {
         this.password = password;
     }
 
+    public User(String account, String password, Date createData, Date expiryDate) {
+        this.account = account;
+        this.password = password;
+        this.createData = createData;
+        this.expiryDate = expiryDate;
+    }
+
     public User(Long id, String account, String password, String deviceFingerprint) {
         this.id = id;
         this.account = account;
