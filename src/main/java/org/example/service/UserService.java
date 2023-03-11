@@ -19,4 +19,8 @@ public interface UserService {
     void unbind(String deviceAccount, String devicePassword);
 
     List<User> query(String account);
+
+    void unbind(Long id);
+
+    void deleteUser(Long id);
 }

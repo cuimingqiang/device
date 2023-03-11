@@ -45,4 +45,17 @@ public class DeviceManagerController {
     public Object deviceUsers(@RequestParam("account") String account) {
         return BaseResult.success(userService.query(account));
     }
+
+    @PostMapping("/unbind")
+    public Object unbind(@RequestBody Map<String,String> param){
+        Long id = Long.parseLong(param.get("id"));
+        userService.unbind(id);
+        return BaseResult.success("解绑成功");
+    }
+    @PostMapping("/deleteDeviceUser")
+    public Object deleteDeviceUser(@RequestBody Map<String,String> param){
+        Long id = Long.parseLong(param.get("id"));
+        userService.deleteUser(id);
+        return BaseResult.success("删除成功");
+    }
 }

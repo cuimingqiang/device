@@ -113,7 +113,11 @@ public class DeviceServiceImp implements DeviceService {
 
         Card card = chargeService.getCard(param.cardNo, param.cardPassword);
         if (card == null) throw new HttpException(401, "卡密不存在或校验码不正确");
-        Date expireDate = new Date();
+        User user = userService.findUser(param.deviceAccount);
+        if (user == null) throw new HttpException(400, "账号不存在");
+
+        Date expireDate = user.expiryDate;
+        if (expireDate == null) expireDate = new Date();
         Calendar instance = Calendar.getInstance();
         instance.setTime(expireDate);
         if (card.type == 0) {
@@ -127,8 +131,7 @@ public class DeviceServiceImp implements DeviceService {
         }
         logger.info("[renew]{}--{}--{}", param, card, instance.getTime());
 
-        User user = userService.findUser(param.deviceAccount);
-        if (user == null) throw new HttpException(400, "账号不存在");
+
         card.userId = user.id;
         card.isUsed = 1;
         chargeService.active(card);
@@ -144,7 +147,7 @@ public class DeviceServiceImp implements DeviceService {
         if (!StringUtils.hasLength(param.devicePassword)) throw new HttpException(400, "密码不能为空");
         if (!StringUtils.hasLength(param.cardNo)) throw new HttpException(400, "卡密不能味空");
         if (!StringUtils.hasLength(param.cardPassword)) throw new HttpException(400, "校验码不能为空");
-        logger.info("[register]{}",param);
+        logger.info("[register]{}", param);
         Card card = chargeService.getCard(param.cardNo, param.cardPassword);
         if (card == null) throw new HttpException(401, "卡密不存在或校验码不正确");
         Date expireDate = new Date();
@@ -173,7 +176,6 @@ public class DeviceServiceImp implements DeviceService {
 
     @Override
     public void unbind(DeviceUnbindParam param) {
-
-        userService.unbind(param.deviceAccount,param.devicePassword);
+        userService.unbind(param.deviceAccount, param.devicePassword);
     }
 }

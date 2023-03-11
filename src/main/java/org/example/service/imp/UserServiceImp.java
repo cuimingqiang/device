@@ -72,4 +72,14 @@ public class UserServiceImp implements UserService {
     public List<User> query(String account) {
         return userRepository.findAll(account);
     }
+
+    @Override
+    public void unbind(Long id) {
+        userRepository.unbind(id);
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
 }
