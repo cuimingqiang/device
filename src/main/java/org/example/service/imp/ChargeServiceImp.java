@@ -41,14 +41,20 @@ public class ChargeServiceImp implements ChargeService {
     public List<Card> getAll(Map<String, Object> param) {
         int type = (int) param.get("type");
         int active = (int) param.get("active");
-        logger.info("[charge get all]{}|{}", type, active);
-        return chargeRepository.getCardByTypeAndIsUsed(type, active);
+        int validity = 1;
+        try {
+            validity = Integer.parseInt(param.get("validity").toString());
+        } catch (Exception e) {
+            logger.error("[get all card]{}", e.getMessage());
+        }
+        logger.info("[charge get all]{}", param);
+        return chargeRepository.getCardByTypeAndIsUsed(type, active,validity);
     }
 
     @Override
     public Card getCard(String cardNO, String verify) {
 
-        return chargeRepository.findCard(cardNO,verify);
+        return chargeRepository.findCard(cardNO, verify);
     }
 
     @Override

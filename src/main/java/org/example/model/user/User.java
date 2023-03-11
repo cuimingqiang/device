@@ -1,5 +1,6 @@
 package org.example.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import jakarta.persistence.Id;
 import java.util.Date;
 
 @Entity
+
 public class User {
     private static final long serialVersionUID = 1L;
     @Id
@@ -16,6 +18,7 @@ public class User {
     @Column(unique = true)
     public String account;
 
+    @JsonIgnore
     public String password;
 
     public String owner;

@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface ChargeRepository extends JpaRepository<Card, Long> {
 
-    @Query("SELECT T FROM Card T WHERE type = :type AND isUsed = :active")
-    List<Card> getCardByTypeAndIsUsed(Integer type, Integer active);
+    @Query("SELECT T FROM Card T WHERE type = :type AND isUsed = :active AND validity = :validity")
+    List<Card> getCardByTypeAndIsUsed(Integer type, Integer active, int validity);
 
     @Query("SELECT T FROM Card T WHERE cardNo = :cardNo AND cardPassword = :password")
     Card findCard(String cardNo, String password);

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -65,5 +66,10 @@ public class UserServiceImp implements UserService {
     @Override
     public void unbind(String deviceAccount, String devicePassword) {
         userRepository.unbind(deviceAccount, devicePassword);
+    }
+
+    @Override
+    public List<User> query(String account) {
+        return userRepository.findAll(account);
     }
 }

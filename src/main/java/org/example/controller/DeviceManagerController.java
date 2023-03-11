@@ -6,6 +6,7 @@ import org.example.base.BaseResult;
 import org.example.model.device.DeviceNewParam;
 import org.example.model.request.DeleteDeviceParam;
 import org.example.service.DeviceService;
+import org.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,9 @@ import java.util.Map;
 public class DeviceManagerController {
     @Autowired
     DeviceService deviceService;
+
+    @Autowired
+    UserService userService;
 
     @PostMapping("/delete")
     public Object delete(@RequestBody DeleteDeviceParam param) {
@@ -37,4 +41,8 @@ public class DeviceManagerController {
         return BaseResult.success(json);
     }
 
+    @GetMapping("/users")
+    public Object deviceUsers(@RequestParam("account") String account) {
+        return BaseResult.success(userService.query(account));
+    }
 }
