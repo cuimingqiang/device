@@ -3,9 +3,10 @@ package org.example.model.device;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+
 @Entity
-public class Sim
-{    private static final long serialVersionUID = 1L;
+public class Sim {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
     public Long id;
@@ -24,53 +25,73 @@ public class Sim
     private String simNetworkOperatorName;
 
     private String simOperatorName;
+    public String simDeviceSoftwareVersion;
+    public String simLineNumber;
+    public String simIccid;
+    public String simImsi;
 
-    public void setSimNetworkOperator(String simNetworkOperator){
+
+    public void setSimNetworkOperator(String simNetworkOperator) {
         this.simNetworkOperator = simNetworkOperator;
     }
-    public String getSimNetworkOperator(){
+
+    public String getSimNetworkOperator() {
         return this.simNetworkOperator;
     }
-    public void setSimNetworkType(int simNetworkType){
+
+    public void setSimNetworkType(int simNetworkType) {
         this.simNetworkType = simNetworkType;
     }
-    public int getSimNetworkType(){
+
+    public int getSimNetworkType() {
         return this.simNetworkType;
     }
-    public void setSimNetworkCountryIso(String simNetworkCountryIso){
+
+    public void setSimNetworkCountryIso(String simNetworkCountryIso) {
         this.simNetworkCountryIso = simNetworkCountryIso;
     }
-    public String getSimNetworkCountryIso(){
+
+    public String getSimNetworkCountryIso() {
         return this.simNetworkCountryIso;
     }
-    public void setSimCountryIso(String simCountryIso){
+
+    public void setSimCountryIso(String simCountryIso) {
         this.simCountryIso = simCountryIso;
     }
-    public String getSimCountryIso(){
+
+    public String getSimCountryIso() {
         return this.simCountryIso;
     }
-    public void setSimState(String simState){
+
+    public void setSimState(String simState) {
         this.simState = simState;
     }
-    public String getSimState(){
+
+    public String getSimState() {
         return this.simState;
     }
-    public void setSimOperator(String simOperator){
+
+    public void setSimOperator(String simOperator) {
         this.simOperator = simOperator;
     }
-    public String getSimOperator(){
+
+    public String getSimOperator() {
         return this.simOperator;
     }
-    public void setSimNetworkOperatorName(String simNetworkOperatorName){
+
+    public void setSimNetworkOperatorName(String simNetworkOperatorName) {
         this.simNetworkOperatorName = simNetworkOperatorName;
     }
-    public String getSimNetworkOperatorName(){
+
+    public String getSimNetworkOperatorName() {
         return this.simNetworkOperatorName;
     }
-    public void setSimOperatorName(String simOperatorName){
+
+    public void setSimOperatorName(String simOperatorName) {
         this.simOperatorName = simOperatorName;
     }
-    public String getSimOperatorName(){
+
+    public String getSimOperatorName() {
         return this.simOperatorName;
     }
 }

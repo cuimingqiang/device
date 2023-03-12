@@ -21,6 +21,7 @@ public class Build {
     public int androidSDKVersion;
 
     public String pt;
+    public String serial;
     @Column(length = Integer.MAX_VALUE)
     public String buildInfo;
     @Column(length = Integer.MAX_VALUE)
@@ -59,5 +60,8 @@ public class Build {
     public String hardware;
 
     public String ispt;
+
+    public String rmdv;
+    public String drmuuid;
 
 }

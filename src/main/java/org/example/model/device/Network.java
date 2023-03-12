@@ -25,6 +25,7 @@ public class Network {
     public String bssid;
 
     public String isoCountryCode;
+    public String simSerialNumber;
 
     public String macId;
 

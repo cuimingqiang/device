@@ -12,6 +12,7 @@ public class Debug {
     @GeneratedValue
     public Long id;
     public boolean debuggable;
+    public boolean debugger;
 
     public boolean adb_enabled;
 
