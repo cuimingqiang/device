@@ -64,7 +64,7 @@ public class DeviceServiceImp implements DeviceService {
         } catch (Exception e) {
             logger.error("[getDevice os version]{}", e.getMessage());
         }
-        List<Long> byHql = deviceRepository.getDeviceByOsVersion(osVersion);
+        List<Long> byHql = deviceRepository.getDeviceIdByHql(country, osVersion);
         System.out.println("--查询到符合条件的--" + byHql);
         if (byHql == null || byHql.isEmpty()) {
             byHql = deviceRepository.getAllDeviceId();
